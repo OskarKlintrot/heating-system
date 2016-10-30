@@ -4,30 +4,40 @@
   "description": "Interfaces for Mongoose schemas and MongoDB repositories.",
   "main": "lib/index.js",
   "typings": "lib/index",
-  "scripts": {
-    "clean": "rimraf lib",
-    "prebuild": "npm-run-all clean lint",
-    "build": "tsc",
-    "lint": "tslint src/**/*.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "update:dependencies": "./node_modules/.bin/ncu -u"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OskarKlintrot/heating-system.git"
-  },
-  "keywords": [
-    "typescript"
-  ],
   "author": "Oskar Klintrot",
   "license": "MIT",
   "engines": {
     "node": ">= 6.2.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OskarKlintrot/heating-system.git"
+  },
+    "keywords": [
+    "typescript"
+  ],
   "bugs": {
     "url": "https://github.com/OskarKlintrot/heating-system/issues"
   },
   "homepage": "https://github.com/OskarKlintrot/heating-system#readme",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rimraf lib",
+    "prebuild": "npm-run-all clean lint",
+    "build": "tsc",
+    "lint": "npm-run-all --parallel lint:src lint:tests",
+    "lint:src": "tslint src/**/*.ts src/**/*.tsx ",
+    "lint:tests": "tslint test/specs/**/*.ts test/specs/**/*.tsx",
+    "pretest:build": "tsc --m umd -p ./tsconfig.json",
+    "pretest": "npm-run-all build",
+    "test": "cross-env NODE_ENV=test mocha test/specs/**/*.ts",
+    "test:rerun": "cross-env NODE_ENV=test mocha test/specs/**/*.ts",
+    "update:dependencies": "./node_modules/.bin/ncu -u",
+    "watch:tests": "cross-env NODE_ENV=watch mocha test/specs/**/*.ts -R spec --bail --watch",
+    "watch:build": "cross-env NODE_ENV=watch ./node_modules/.bin/tsc --skipLibCheck -p . -w"
+  },
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.32",

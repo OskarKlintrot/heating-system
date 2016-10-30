@@ -7,7 +7,7 @@
     "target": "es5",
     "jsx": "preserve",
     "module": "commonjs",
-    "moduleResolution": "classic",
+    "moduleResolution": "node",
     "noEmitHelpers": true,
     "newLine": "LF",
     "noImplicitAny": true,
@@ -17,12 +17,21 @@
     "sourceMap": true,
     "inlineSourceMap": false,
     "suppressImplicitAnyIndexErrors": false,
+    "skipLibCheck": true,
     "outDir": "lib",
-    "skipLibCheck": true
-    // "types": ["mocha", "chai", "sinon"]
+    "types": ["mocha", "chai", "sinon"]
+  },
+  "filesGlob": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2
   },
   "exclude": [
     "node_modules",
+    "test/setup/*.js",
     "test"
   ],
   "compileOnSave": false,

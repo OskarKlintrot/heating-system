@@ -3,7 +3,7 @@ import * as Mongoose from 'mongoose'
 export interface ITemperature {
   _id: string
   timestamp: Date
-  roomId: string
+  roomId: Mongoose.Schema.Types.ObjectId | string
   temp: number
 }
 

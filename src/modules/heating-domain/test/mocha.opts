@@ -1,0 +1,15 @@
+--require test/setup/setup-node.js
+--require ignore-styles
+--require ts-node/register
+--ui bdd
+
+--reporter spec
+--bail
+--full-trace
+--check-leaks
+--globals expect,mock,sandbox,spy,stub,useFakeServer,useFakeTimers,useFakeXMLHttpRequest
+--watch-extensions tsx,ts
+--colors
+
+--recursive
+--timeout 5000

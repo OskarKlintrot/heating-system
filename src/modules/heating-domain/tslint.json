@@ -12,7 +12,7 @@
     "label-undefined": true,
     "member-access": false,
     "member-ordering": [false],
-    "max-line-length": [true, 80],
+    "max-line-length": [true, 140],
     "new-parens": true,
     "no-any": false,
     "no-arg": true,
