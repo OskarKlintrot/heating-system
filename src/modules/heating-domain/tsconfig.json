@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowUnreachableCode": false,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "jsx": "preserve",
+    "module": "commonjs",
+    "moduleResolution": "classic",
+    "noEmitHelpers": true,
+    "newLine": "LF",
+    "noImplicitAny": true,
+    "noLib": false,
+    "removeComments": false,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "outDir": "lib",
+    "skipLibCheck": true
+    // "types": ["mocha", "chai", "sinon"]
+  },
+  "exclude": [
+    "node_modules",
+    "test"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false
+}
