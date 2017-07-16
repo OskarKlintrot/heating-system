@@ -1,0 +1,22 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "title": "This is the HOMEPAGE. | Raspberry PI And Industruino Heating System – Documentation",
+    "keywords": "This is the HOMEPAGE . Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+  },
+  "README.html": {
+    "href": "README.html",
+    "title": "heating-system | Raspberry PI And Industruino Heating System – Documentation",
+    "keywords": "heating-system A heating system built using Typescript, Node, Express, MongoDB, Mongoose, Raspberry Pi, Genuino MICRO and Industruino"
+  },
+  "src/docs/api/index.html": {
+    "href": "src/docs/api/index.html",
+    "title": "PLACEHOLDER | Raspberry PI And Industruino Heating System – Documentation",
+    "keywords": "PLACEHOLDER TODO: Add .NET projects to the src folder and run docfx to generate REAL API Documentation !"
+  },
+  "src/docs/articles/intro.html": {
+    "href": "src/docs/articles/intro.html",
+    "title": "Add your introductions here! | Raspberry PI And Industruino Heating System – Documentation",
+    "keywords": "Add your introductions here!"
+  }
+}

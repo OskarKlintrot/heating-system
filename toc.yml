@@ -1,0 +1,5 @@
+- name: Articles
+  href: src/docs/articles/
+- name: Api Documentation
+  href: src/docs/api/
+  homepage: src/docs/api/index.md
