@@ -9,6 +9,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using HS.Web.Models.Options;
+using HS.Web.Extensions;
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace HS.Web
 {
@@ -24,6 +31,13 @@ namespace HS.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Database
+            var sqlConnectionString = Configuration["CONNECTION_STRING"];
+
+            //services.AddDbContext<IntranetApiContext>(opt => opt.UseSqlServer(sqlConnectionString));
+            #endregion
+
+            #region Authentication
             services.AddAuthentication(sharedOptions =>
             {
                 sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -38,12 +52,46 @@ namespace HS.Web
             })
             .AddCookie();
 
+            ClaimsPrincipalExtension.AdminGroupId = Configuration["AUTHENTICATION_AZURE_AD_ADMIN_GROUP"];
+            #endregion
+
+            #region Custom Authorization Policies
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    "IsAdmin",
+                    policyBuilder => policyBuilder.RequireAssertion(
+                        context => context.User.IsAdmin())
+                    );
+            });
+            #endregion
+
+            #region Options
+            services.Configure<GoogleAnalyticsOptions>(options =>
+            {
+                options.TrackingId = Configuration["GA_TRACKING_ID"];
+            });
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+                options.Level = System.IO.Compression.CompressionLevel.Optimal
+            );
+            #endregion
+
+            // TODO: Enforce SSL: https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl
+
+            #region Response Compression
+            services.AddResponseCompression();
+            #endregion
+
+            #region MVC
             services.AddMvc();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            #region Error Pages
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,17 +101,41 @@ namespace HS.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            #endregion
 
-            app.UseStaticFiles();
+            #region Response Compression
+            app.UseResponseCompression();
+            #endregion
 
-            app.UseAuthentication();
+            #region Authentication
+            app.UseAuthentication(); 
+            #endregion
 
-            app.UseMvc(routes =>
+            #region Static Files
+            app.UseProtectFolder(new ProtectFolderOptions
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                Path = "/Assets",
             });
+
+            app.UseStaticFiles(); // For the wwwroot folder
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"Assets")
+                ),
+                RequestPath = new PathString("/Assets")
+            });
+            #endregion
+
+            #region MVC
+            app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+                }); 
+            #endregion
         }
     }
 }

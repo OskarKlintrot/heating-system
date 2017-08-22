@@ -1,4 +1,4 @@
-﻿namespace Microsoft.AspNetCore.Authentication
+namespace Microsoft.AspNetCore.Models.Options
 {
     public class AzureAdOptions
     {

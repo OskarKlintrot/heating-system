@@ -1,0 +1,20 @@
+@using HS.Web.Extensions
+@{ 
+    var title = (string)ViewData["MobileTitle"] ?? (string)ViewData["Title"] ?? String.Empty;
+}
+
+<div class="nav-wrapper">
+    <a href="#" class="brand-logo center hide-on-med-and-up">@title.TruncateWords(10)</a>
+    <ul class="right hide-on-med-and-down">
+        <li>
+            <a href="https://outlook.office.com/owa/" target="_blank" rel="noopener">
+                <i class="material-icons left">mail</i> Webmail
+            </a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Account" asp-action="SignOut">
+                <i class="material-icons left">power_settings_new</i> Sign Out
+            </a>
+        </li>
+    </ul>
+</div>
