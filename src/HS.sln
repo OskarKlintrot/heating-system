@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HS.Web", "HS.Web\HS.Web.csproj", "{4AFFA340-2C63-4DDC-AC22-9C2C217A2E7B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{EFFDC54D-A6AC-4731-B5E6-BC685F06DAC3}"
+	ProjectSection(SolutionItems) = preProject
+		..\.travis.yml = ..\.travis.yml
+		build.cake = build.cake
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HS.Web", "HS.Web\HS.Web.csproj", "{2299F7C7-B03B-4F1E-94E4-E1212F1CA0A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +17,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4AFFA340-2C63-4DDC-AC22-9C2C217A2E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AFFA340-2C63-4DDC-AC22-9C2C217A2E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AFFA340-2C63-4DDC-AC22-9C2C217A2E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AFFA340-2C63-4DDC-AC22-9C2C217A2E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2299F7C7-B03B-4F1E-94E4-E1212F1CA0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2299F7C7-B03B-4F1E-94E4-E1212F1CA0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2299F7C7-B03B-4F1E-94E4-E1212F1CA0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2299F7C7-B03B-4F1E-94E4-E1212F1CA0A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82BE9CDD-98E9-4F8F-8641-9576D1FBF778}
 	EndGlobalSection
 EndGlobal
